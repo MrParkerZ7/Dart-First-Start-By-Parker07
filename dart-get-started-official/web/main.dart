@@ -35,6 +35,230 @@ void main() {
   jsonData();
   classes();
   constructor();
+  redirectingConstructor();
+  getterSetter();
+  abstractClass();
+  overridableOperators();
+  implicitInterfaces();
+  extendingClass();
+  enumClass();
+  multipleInheritance();
+}
+
+multipleInheritance(){
+  // TODO: Continue..
+}
+
+
+enumClass() {
+  // Get all value from enum
+  List<RareSuperBike> bb = RareSuperBike.values;
+  for (var i in bb) {
+    print("EnumClass : RareBike : ${i.index} : ${i}");
+  }
+}
+
+enum RareSuperBike { HP4, HP4Race, H2R, R1M, HRC }
+
+extendingClass() {
+  var tele = new Television();
+  tele.turnOn("Tele");
+
+  var smartTele = new SmartTelevision();
+  smartTele.turnOn("SmartTele");
+}
+
+class Television {
+  void turnOn(String message) {
+    print("ExtendingClass : Television : $message");
+  }
+}
+
+class SmartTelevision extends Television {
+  @override
+  void turnOn(String message) {
+    super.turnOn(message);
+    print("ExtendingClass : SmartTelevision : $message");
+  }
+}
+
+implicitInterfaces() {
+  print(greetBob(new People('Kathy')));
+  print(greetBob(new Impostor()));
+}
+
+class People {
+  final _name;
+
+  People(this._name);
+
+  String greet(String who) => 'Hello, $who. I am $_name.';
+}
+
+class Impostor implements People {
+  get _name => '';
+
+  String greet(String who) => 'Hi $who. Do you know who I am?';
+}
+
+String greetBob(People person) => person.greet('Bob');
+
+overridableOperators() {
+  Vector v = new Vector(500, -200);
+  Vector w = new Vector(150, -800);
+  Vector a = v + w;
+  print("OverridableOperators : money = ${a.money} : Debt = ${a.debt}");
+}
+
+class Vector {
+  int money, debt;
+
+  Vector(this.money, this.debt);
+
+  Vector operator +(Vector v) {
+    return new Vector(money + v.money, debt + v.debt);
+  }
+
+  Vector operator -(Vector v) {
+    return new Vector(money - v.money, debt - v.debt);
+  }
+
+  int currentMoney() {
+    return money + debt;
+  }
+}
+
+abstractClass() {
+  Reality truth = new Reality();
+  truth.car();
+  truth.home();
+  truth.couple();
+}
+
+abstract class Imagination {
+  void car();
+
+  void home();
+
+  void couple();
+}
+
+class Reality extends Imagination {
+  @override
+  void car() {
+    print("Dream car : bicycle");
+  }
+
+  @override
+  void couple() {
+    print("Dream couple : single");
+  }
+
+  @override
+  void home() {
+    print("Dream home : hire home");
+  }
+}
+
+getterSetter() {
+  // First demo
+  Microwave micro = new Microwave('dog', 'banana');
+  print("GetterSetter : Microwave : Food : ${micro.getFood}");
+  print("GetterSetter : Microwave : Fruit : ${micro.getFruit}");
+
+  // Second demo
+  var rect = new Rectangle(3, 4, 20, 15);
+  print("GetterSetter : right : ${rect.right}");
+
+  rect.right = 12;
+  print("GetterSetter : right : ${rect.bottom}");
+}
+
+class Microwave {
+  String food, fruit;
+
+  Microwave(this.food, this.fruit);
+
+  String get getFood => "Hot $food";
+
+  String get getFruit => "Rotten $fruit";
+}
+
+class Rectangle {
+  num left, top, width, height;
+
+  Rectangle(this.left, this.top, this.width, this.height);
+
+  // Define two calculated properties: right and bottom.
+  num get right => left + width;
+
+  set right(num value) => left = value - width;
+
+  num get bottom => top + height;
+
+  set bottom(num value) => top = value - height;
+}
+
+redirectingConstructor() {
+  // Redirect Constructor
+  Stuff s = new Stuff(5, 6);
+  Stuff h = new Stuff.alongXAxis(9.55);
+
+  // Constant Constructor
+  ConstantConstructor a = new ConstantConstructor(5, 5);
+
+  // FactoryConstructor
+  FactoryConstructor z = new FactoryConstructor("Park");
+  FactoryConstructor c = new FactoryConstructor._internal('Fuck');
+}
+
+// RedirectionConstructor
+class Stuff {
+  num x, y, z;
+
+  Stuff(this.x, this.y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  // redirectingConstructor can not have any body
+  Stuff.alongXAxis(num x)
+      : this(x, 0); // but can initial value and name your second constructor
+}
+
+class FactoryConstructor {
+  final String name;
+  bool mute = false;
+
+  // _cache is library-private, thanks to
+  // the _ in front of its name.
+  static final Map<String, FactoryConstructor> _cache =
+      <String, FactoryConstructor>{};
+
+  factory FactoryConstructor(String name) {
+    if (_cache.containsKey(name)) {
+      return _cache[name];
+    } else {
+      final logger = new FactoryConstructor._internal(name);
+      _cache[name] = logger;
+      return logger;
+    }
+  }
+
+  FactoryConstructor._internal(this.name);
+
+  void log(String msg) {
+    if (!mute) print(msg);
+  }
+}
+
+// Constant Constructor class
+class ConstantConstructor {
+  static final ConstantConstructor origin = const ConstantConstructor(0, 0);
+
+  final num x, y;
+
+  const ConstantConstructor(this.x, this.y);
 }
 
 constructor() {
