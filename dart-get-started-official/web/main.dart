@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:html';
 import 'main.dart';
+import 'hello-lazily-loading.dart' deferred as lazilyLoading;
+import 'todo.dart';
 
 // dart also support top level man function which can use as DartVM server side
 void main() {
@@ -43,12 +45,229 @@ void main() {
   extendingClass();
   enumClass();
   multipleInheritance();
+  staticVariableMethod();
+  genericsCollection();
+  parameterizedType();
+  genericMethod();
+  lazilyLoadingLibrary();
+  handlingFutures();
+  callableClasses();
+  typedefs();
+  typedefsShot();
+  metadataAnnotations();
+  customAnnotations();
 }
 
-multipleInheritance(){
-  // TODO: Continue..
+@Todo("Demo", "Custom Annotation")
+customAnnotations(){
+
 }
 
+metadataAnnotations() {
+ var metadata = new Metadata();
+}
+
+class SuperMetadata{
+  veryFun(){
+    print("MetadataAnnotations : null!");
+
+  }
+}
+
+class Metadata extends SuperMetadata {
+  @Deprecated("We haver newers!!") // Also have to define reason to deprecate
+  void fun (){
+    print("MetadataAnnotations : Version 1.03");
+  }
+
+  @override
+  void veryFun (){
+    print("MetadataAnnotations : Version 2.1");
+  }
+}
+
+typedefsShot() {
+  assert(sorted is CompareShot<int>); // True!
+}
+
+// You can also compare in between different collections.
+typedef F = List<T> Function<T>(T);
+
+typedef int CompareShot<T>(T a, T b);
+
+int sorted(int a, int b) => a - b;
+
+// Familiar to java sort collections.
+typedefs() {
+  SortedCollection coll = new SortedCollection(sort);
+  print("Typedefs : ${(coll.compare is Function)}");
+  print("Typedefs : ${(coll.compare is Compare)}");
+}
+
+typedef int Compare(Object a, Object b);
+
+class SortedCollection {
+  Compare compare;
+
+  SortedCollection(this.compare);
+}
+
+// Initial, broken implementation.
+int sort(Object a, Object b) => 0;
+
+callableClasses() {
+  var c = new Callable();
+  print("CallableClasses : ${c("Slap", "Kick", "Punch")}");
+}
+
+class Callable {
+  // This is callable class which make class act like method.
+  call(String a, String b, String c) => '$a $b $c!';
+}
+
+// Work like synchronize in java.
+// Must work with Stream or Iterable.
+// Have do define async and await together.
+handlingFutures() async* {
+  // Add * after async for better performance in some case.
+//  Future<String> lookUpVersion() async => '1.0.0';
+  List<String> list = ["Park", "Fuck", "Suck"];
+//  await for (String s in list){
+//    print(s);
+//  }
+}
+
+lazilyLoadingLibrary() async {
+  await lazilyLoading
+      .loadLibrary(); // use for avoid a problems with library loading
+  lazilyLoading.helloLazy();
+  // etc case
+//  try {
+//    version = await new DateTime.now();
+//  } catch (e) {
+//    // React to inability to look up the version
+//  }
+}
+
+genericMethod() {
+  var gm = new GenericMethod();
+  List list = new List<String>();
+  list.addAll(["Park", "Fuck", "Suck"]);
+  gm.first(list);
+}
+
+class GenericMethod {
+  T first<T>(List<T> ts) {
+    T tmp = ts[0];
+    print("GenericMethod : $tmp");
+    return tmp;
+  }
+}
+
+// I don't understand this case
+parameterizedType() {
+  var motor = new MotorV<MotorV2>();
+  motor.showPower();
+}
+
+class MotorV<T extends MotorV1> {
+  void showPower() {
+    print("ParameterizedType : ${T}");
+  }
+}
+
+class MotorV1 {
+  final num power = 145;
+
+  void hp() {
+    print("ParameterizedType : $power");
+  }
+}
+
+class MotorV2 extends MotorV1 {
+  @override
+  final num power = 157;
+}
+
+class MotorV3 extends MotorV2 {
+  @override
+  void hp() {
+    print("ParameterizedType : ${power * 1.3}");
+  }
+}
+
+genericsCollection() {
+  var variables =
+      new List(); // Or fix type by define new List<String>(); represent or else method.
+  variables.addAll(['Park', 'Fuck', 'Suck']);
+  variables.add(45);
+  variables.add(58);
+  variables.add(79);
+
+  print("GenericsCollection : $variables");
+
+  var name = new Map<int, String>();
+  name.addAll({1: "Fuck", 0: "Park", 2: "Suck"});
+  print("GenericsCollection : $name");
+}
+
+staticVariableMethod() {
+  print("StaticVariableMethod : power : ${God.power}");
+  God.fullyPower();
+}
+
+class God {
+  static num power = 99.99;
+
+  static void fullyPower() {
+    print("StaticVariableMethod : fully power : ${power * 1000}");
+  }
+}
+
+multipleInheritance() {
+  Xyz xyz = new Xyz();
+  xyz.aName();
+  xyz.bName();
+  xyz.cName();
+  xyz.faceFigure();
+}
+
+class Xyz extends A with B, C {
+  @override
+  void faceFigure() {
+    print("MultipleInheritance : face figure ABC");
+  }
+}
+
+class A {
+  void faceFigure() {
+    print("MultipleInheritance : face figure A");
+  }
+
+  void aName() {
+    print("MultipleInheritance : class A");
+  }
+}
+
+class B {
+  void faceFigure() {
+    print("MultipleInheritance : face figure B");
+  }
+
+  void bName() {
+    print("MultipleInheritance : class B");
+  }
+}
+
+class C {
+  void faceFigure() {
+    print("MultipleInheritance : face figure C");
+  }
+
+  void cName() {
+    print("MultipleInheritance : class C");
+  }
+}
 
 enumClass() {
   // Get all value from enum
