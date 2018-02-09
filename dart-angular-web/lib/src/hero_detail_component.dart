@@ -1,29 +1,32 @@
-/*
- * Copyright (c) 2018. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
- * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
- * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
- * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
- * Vestibulum commodo. Ut rhoncus gravida arcu.
- */
+
+import 'dart:async';
 
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
+import 'package:angular_router/angular_router.dart';
+
 import 'hero.dart';
+import 'hero_service.dart';
 
 @Component(
   selector: 'hero-detail',
-  template: '''
-    <div *ngIf="hero != null">
-      <h2>{{hero.name}} details!</h2>
-      <div><label>id: </label>{{hero.id}}</div>
-      <div>
-        <label>name: </label>
-        <input [(ngModel)]="hero.name" placeholder="name">
-      </div>
-    </div>''',
+  templateUrl: 'hero_detail_component.html',
+  styleUrls: const ['hero_detail_component.css'],
   directives: const [CORE_DIRECTIVES, formDirectives],
 )
-class HeroDetailComponent {
-  @Input()
+class HeroDetailComponent implements OnInit {
   Hero hero;
+  final HeroService _heroService;
+  final RouteParams _routeParams;
+  final Location _location;
+
+  HeroDetailComponent(this._heroService, this._routeParams, this._location);
+
+  Future<Null> ngOnInit() async {
+    var _id = _routeParams.get('id');
+    var id = int.parse(_id ?? '', onError: (_) => null);
+    if (id != null) hero = await (_heroService.getHero(id));
+  }
+
+  void goBack() => _location.back();
 }

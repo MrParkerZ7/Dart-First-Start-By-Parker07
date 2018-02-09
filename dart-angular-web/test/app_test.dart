@@ -7,14 +7,14 @@ import 'package:angular_test/angular_test.dart';
 import 'package:pageloader/objects.dart';
 import 'package:test/test.dart';
 
-import 'package:dart_angular_web/app_component.dart';
+import 'package:dart_angular_web/src/heroes_component.dart';
 
-NgTestFixture<AppComponent> fixture;
+NgTestFixture<HeroesComponent> fixture;
 AppPO appPO;
 
 @AngularEntrypoint()
 void main() {
-  final testBed = new NgTestBed<AppComponent>();
+  final testBed = new NgTestBed<HeroesComponent>();
 
   setUp(() async {
     fixture = await testBed.create();
