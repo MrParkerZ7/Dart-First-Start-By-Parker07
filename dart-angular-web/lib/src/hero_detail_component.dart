@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:angular/angular.dart';
@@ -26,6 +25,11 @@ class HeroDetailComponent implements OnInit {
     var _id = _routeParams.get('id');
     var id = int.parse(_id ?? '', onError: (_) => null);
     if (id != null) hero = await (_heroService.getHero(id));
+  }
+
+  Future<Null> save() async {
+    await _heroService.update(hero);
+    goBack();
   }
 
   void goBack() => _location.back();
