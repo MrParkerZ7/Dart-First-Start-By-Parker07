@@ -1,11 +1,5 @@
-/*
- * Copyright (c) 2018. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
- * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
- * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
- * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
- * Vestibulum commodo. Ut rhoncus gravida arcu.
- */
-
+// Note: MockClient constructor API forces all InMemoryDataService members to
+// be static.
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
@@ -32,13 +26,14 @@ class InMemoryDataService extends MockClient {
   ];
   static List<Hero> _heroesDb;
   static int _nextId;
+
   static Future<Response> _handler(Request request) async {
     if (_heroesDb == null) resetDb();
     var data;
     switch (request.method) {
       case 'GET':
         final id =
-        int.parse(request.url.pathSegments.last, onError: (_) => null);
+            int.parse(request.url.pathSegments.last, onError: (_) => null);
         if (id != null) {
           data = _heroesDb
               .firstWhere((hero) => hero.id == id); // throws if no match
@@ -71,11 +66,14 @@ class InMemoryDataService extends MockClient {
     return new Response(JSON.encode({'data': data}), 200,
         headers: {'content-type': 'application/json'});
   }
+
   static resetDb() {
     _heroesDb = _initialHeroes.map((json) => new Hero.fromJson(json)).toList();
     _nextId = _heroesDb.map((hero) => hero.id).fold(0, max) + 1;
   }
+
   static String lookUpName(int id) =>
       _heroesDb.firstWhere((hero) => hero.id == id, orElse: null)?.name;
+
   InMemoryDataService() : super(_handler);
 }

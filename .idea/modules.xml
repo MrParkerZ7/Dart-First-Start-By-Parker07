@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Dart-First-Start-By-Parker07.iml" filepath="$PROJECT_DIR$/Dart-First-Start-By-Parker07.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dart-angular-web/dart-angular-web.iml" filepath="$PROJECT_DIR$/dart-angular-web/dart-angular-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/dart-derek-banas/dart-derek-banas.iml" filepath="$PROJECT_DIR$/dart-derek-banas/dart-derek-banas.iml" />
       <module fileurl="file://$PROJECT_DIR$/dart-get-started-official/dart-get-started-official.iml" filepath="$PROJECT_DIR$/dart-get-started-official/dart-get-started-official.iml" />
     </modules>
