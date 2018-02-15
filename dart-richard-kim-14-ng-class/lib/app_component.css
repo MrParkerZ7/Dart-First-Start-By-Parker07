@@ -1,0 +1,19 @@
+:host {
+    /* This is equivalent of the 'body' selector of a page. */
+}
+
+.first {
+    color: red;
+}
+
+.second {
+    font-size: 60px;
+}
+
+.third {
+    font-style: italic;
+}
+
+.fourth {
+    background-color: yellow;
+}
