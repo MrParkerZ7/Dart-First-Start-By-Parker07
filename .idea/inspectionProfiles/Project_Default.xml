@@ -4,13 +4,24 @@
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="6">
+          <list size="17">
             <item index="0" class="java.lang.String" itemvalue="[(ngmodel)]" />
             <item index="1" class="java.lang.String" itemvalue="*ngfor" />
             <item index="2" class="java.lang.String" itemvalue="(click)" />
             <item index="3" class="java.lang.String" itemvalue="*ngif" />
             <item index="4" class="java.lang.String" itemvalue="[class.selected]" />
             <item index="5" class="java.lang.String" itemvalue="[routerlink]" />
+            <item index="6" class="java.lang.String" itemvalue="myhighlight" />
+            <item index="7" class="java.lang.String" itemvalue="highlightcolor" />
+            <item index="8" class="java.lang.String" itemvalue="[highlightcolor]" />
+            <item index="9" class="java.lang.String" itemvalue="[myhighlight]" />
+            <item index="10" class="java.lang.String" itemvalue="defaultcolor" />
+            <item index="11" class="java.lang.String" itemvalue="autoid" />
+            <item index="12" class="java.lang.String" itemvalue="[innerhtml]" />
+            <item index="13" class="java.lang.String" itemvalue="[type]" />
+            <item index="14" class="java.lang.String" itemvalue="[value]" />
+            <item index="15" class="java.lang.String" itemvalue="on-click" />
+            <item index="16" class="java.lang.String" itemvalue="[ngclass]" />
           </list>
         </value>
       </option>

@@ -1,0 +1,16 @@
+<h3>Template Reference Variable</h3>
+<input type="text" value="Value_of_Something" id="Identity" name="Name_of_Input" #inputVariable>
+
+<div *ngFor="let inputVariable of nameList; let i=index">
+    {{inputVariable}}
+</div>
+
+<br><br>
+
+{{inputVariable}} :   {{inputVariable.name}} :   {{inputVariable.value}}
+
+<h4>Detail</h4>
+<h5>
+    Template reference variable is a variable which can be reference out side local tag which it define. <br>
+    And like you see. <br>
+</h5>

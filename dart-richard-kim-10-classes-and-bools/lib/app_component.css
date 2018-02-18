@@ -1,0 +1,18 @@
+:host {
+    /* This is equivalent of the 'body' selector of a page. */
+}
+
+.firstClass {
+    color: red;
+    font-size: 55px;
+}
+
+.secondClass {
+    color: blue;
+    font-size: 55px;
+}
+
+div {
+    color: purple;
+    font-size: 20px;
+}

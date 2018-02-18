@@ -1,0 +1,27 @@
+<h4>User List</h4>
+<div *ngFor="let user of users">
+    {{user}}
+</div>
+
+<h4>User List with logic</h4>
+<div *ngFor="let user of users; let i=index; let f=first; let l=last; let o=odd; let e=even">
+    {{user}} : {{i}} : {{f}} : {{l}} : {{o}} : {{e}}
+</div>
+
+<h4>User List with logic</h4>
+<div *ngFor="let user of users; let i=index; let f=first; let l=last; let o=odd; let e=even">
+    <div *ngIf="e">{{user}} : {{i}}</div>
+</div>
+
+<h5>
+    let i=index : number <br>
+    let f=first : value = true only first element <br>
+    let l=last : value = true only last element <br>
+    let o=odd : value switch between true and false. start with false <br>
+    let e=even : value switch between true and false. start with true <br>
+</h5>
+
+<h4>Dog List</h4>
+<div *ngFor="let dog of dogs">
+    No : {{dog.no}} Name : {{dog.name}} Owner : {{dog.owner}}
+</div>

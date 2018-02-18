@@ -11,7 +11,7 @@ void main() {
   name.onClick.listen((MouseEvent e) => name.value = '');
 
   age.onChange.listen((Event e) {
-    window.alert("your age = $age");
+    window.alert("your age = ${age.value}");
   });
 
   // Use onClick listen to express event window alert.

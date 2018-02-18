@@ -1,0 +1,10 @@
+<div [ngSwitch]="motor">
+    <input type="text" [(ngModel)]="motor" (click)="clear()">
+    <input type="button" value="S100RR" *ngSwitchCase="'BMW'">
+    <input type="button" value="ZX10R" *ngSwitchCase="'Kawasaki'">
+    <input type="button" value="GSX1000" *ngSwitchCase="'Suzuki'">
+    <input type="button" value="R1" *ngSwitchCase="'Yamaha'">
+    <input type="button" value="CBR1000RR" *ngSwitchCase="'Honda'">
+    <input type="button" value="No bike for you." *ngSwitchDefault>
+
+</div>
