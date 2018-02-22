@@ -1,7 +1,10 @@
 <component name="CopyrightManager">
-  <settings>
+  <settings default="Park Promsawat Pitakmetakul">
     <module2copyright>
       <element module="All" copyright="Park Promsawat Pitakmetakul" />
     </module2copyright>
+    <LanguageOptions name="__TEMPLATE__">
+      <option name="block" value="false" />
+    </LanguageOptions>
   </settings>
 </component>
